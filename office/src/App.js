@@ -65,7 +65,7 @@ export default class App extends React.Component {
             fontSize: 0.8,
             fontWeight: '400',
             paddingLeft: 0.2,
-            paddingRight: 0.2,
+            paddingRight: 0.2,                      
             textAlign: 'center',
             textAlignVertical: 'center',
             transform: [{translate: [-3, 2, -6]}],
