@@ -5,7 +5,7 @@ import {
   View,
 } from 'react-vr';
 
-export default class office extends React.Component {
+export default class space extends React.Component {
   render() {
     return (
       <View>
@@ -15,4 +15,4 @@ export default class office extends React.Component {
   }
 };
 
-AppRegistry.registerComponent('office', () => office);
+AppRegistry.registerComponent('space', () => space);

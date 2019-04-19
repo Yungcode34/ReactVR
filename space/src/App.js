@@ -7,32 +7,58 @@ import {
   StyleSheet,
   Model,
   View,
+  Animated,
 } from 'react-vr';
+
+
+import Easing from 'react-vr';
 import TextScene from './TextScene';
 
-export default class office extends React.Component {
+
+const AnimatedModel = Animated.createAnimatedComponent(Model);
+
+
+export default class space extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             background: 'space.jpg',
+            satelliteRotZ: new Animated.Value(0),
         }
+    }
+
+    componentDidMount(){
+        this.state.satelliteRotZ.setValue(0);
+        Animated.timing(
+            this.state.satelliteRotZ,
+            {
+                toValue: -3000,
+                duration: 100000,
+                delay: 2000,
+                easing: Easing.inOut
+
+            }
+        ).start();
     }
   render() {
     return (
       <View>
           <AmbientLight intensity={2.5} />
         <Pano source={asset(this.state.background)}/>
-        <Model
+        <AnimatedModel
             source={{
                 obj: asset('/nasa-aqua-satellite-obj/nasa-aqua-satellite.obj'),
                 mtl: asset('/nasa-aqua-satellite-obj/nasa-aqua-satellite.mtl')
             }}
             style={{
                 transform:[
-                    {translate: [-4, 0, -0.75]},
+                    {translateX: -4},
+                    {translateY: 0},
+                    {translateZ: -0.75},
                     { scale: 0.075 },
                     {rotateX: 180 },
-                    {rotateY: -360 }
+                    {rotateY: -360 },
+                    {rotateZ: this.state.satelliteRotZ },
                 ]
             }}
         
